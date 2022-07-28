@@ -81,6 +81,15 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
+        // Recursion
+        if (A == null) {
+            A = B;
+            return A;
+        }
+        dcatenate(A.rest, B);
+        return A;
+
+        /* Iteration
         IntList res = A;
         IntList ptr = res;
         if (ptr == null) {
@@ -93,6 +102,8 @@ public class IntList {
         }
 
         return res;
+
+         */
     }
 
     /**
@@ -100,6 +111,13 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
+        // Recursion
+        if (A == null) {
+            return B;
+        }
+        return new IntList(A.first, catenate(A.rest, B));
+
+        /* Iteration version
         IntList res = new IntList();
         IntList ptr = res;
         IntList tmp = A;
@@ -116,6 +134,9 @@ public class IntList {
             ptr = ptr.rest;
         }
         return res.rest;
+
+         */
+
     }
 
 
