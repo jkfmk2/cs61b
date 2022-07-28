@@ -83,10 +83,9 @@ public class IntList {
     public static IntList dcatenate(IntList A, IntList B) {
         // Recursion
         if (A == null) {
-            A = B;
-            return A;
+            return B;
         }
-        dcatenate(A.rest, B);
+        A.rest = dcatenate(A.rest, B);
         return A;
 
         /* Iteration
@@ -102,7 +101,6 @@ public class IntList {
         }
 
         return res;
-
          */
     }
 
