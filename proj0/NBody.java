@@ -25,12 +25,12 @@ public class NBody {
         return planets;
     }
 
-    public static void drawStarfield() {
+    private static void drawStarfield() {
         String imgStarfield = "images/starfield.jpg";
         StdDraw.picture(0, 0, imgStarfield);
     }
 
-    public static void drawPlanets(Planet[] planets) {
+    private static void drawPlanets(Planet[] planets) {
         for (Planet p : planets) {
             p.draw();
         }
