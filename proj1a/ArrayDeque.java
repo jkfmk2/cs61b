@@ -19,6 +19,8 @@ public class ArrayDeque<T> {
         int rightSize = items.length - leftSize;
         System.arraycopy(items, nextFirst + 1, a, a.length / 4, leftSize);
         nextFirst = minusOne(a.length / 4);
+        System.arraycopy(items, 0, a, nextFirst + leftSize + 1, rightSize);
+        nextLast = nextFirst + items.length + 1;
         items = a;
     }
 
