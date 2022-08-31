@@ -17,7 +17,7 @@ public class ArrayDeque<T> {
         T[] a = (T[]) new Object[capacity];
         int leftSize = items.length - nextLast;
         int rightSize = items.length - leftSize;
-        System.arraycopy(items, nextFirst + 1, a, a.length / 4, leftSize);
+        System.arraycopy(items, (nextFirst + 1) % items.length, a, a.length / 4, leftSize);
         nextFirst = minusOne(a.length / 4);
         System.arraycopy(items, 0, a, nextFirst + leftSize + 1, rightSize);
         nextLast = nextFirst + items.length + 1;
@@ -71,8 +71,8 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return;
         }
-        int start = nextFirst + 1;
-        int end = nextLast - 1;
+        int start = (nextFirst + 1) % items.length;
+        int end = (nextLast - 1 + items.length) % items.length;
         while (start != end) {
             System.out.print(items[start].toString() + ' ');
             start = plusOne(start);
@@ -86,6 +86,7 @@ public class ArrayDeque<T> {
         }
         nextFirst = plusOne(nextFirst);
         T data = items[nextFirst];
+        items[nextFirst] = null;
         size -= 1;
         return data;
     }
@@ -96,6 +97,7 @@ public class ArrayDeque<T> {
         }
         nextLast =  minusOne(nextLast);
         T data = items[nextLast];
+        items[nextLast] = null;
         size -= 1;
         return data;
     }
