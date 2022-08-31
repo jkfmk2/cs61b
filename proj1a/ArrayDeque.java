@@ -15,11 +15,11 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
-        int l_len = items.length - nextLast;
-        int r_len = items.length - l_len;
-        System.arraycopy(items, nextFirst + 1, a, a.length / 4, l_len);
+        int leftSize = items.length - nextLast;
+        int rightSize = items.length - leftSize;
+        System.arraycopy(items, nextFirst + 1, a, a.length / 4, leftSize);
         nextFirst = minusOne(a.length / 4);
-        System.arraycopy(items, 0, a, nextFirst + l_len + 1, r_len);
+        System.arraycopy(items, 0, a, nextFirst + leftSize + 1, rightSize);
         nextLast = nextFirst + items.length + 1;
         items = a;
     }
